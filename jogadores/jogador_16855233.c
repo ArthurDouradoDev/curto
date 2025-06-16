@@ -16,8 +16,8 @@ static int vitorias_atuais = 0;
 // Função para comparar cartas (assumindo que existe externamente)
 extern int comparar_cartas(Carta a, Carta b, Valor manilha);
 
-const char* nome_jogador_16855233() {
-    return "Campeão 16855233"; // Substitua pelo seu nome/número
+const char* nome_16855233() {
+    return "Jogador 16855233"; // Substitua pelo seu nome/número
 }
 
 void iniciar_16855233(int meu_id, int total_jogadores) {
@@ -25,9 +25,9 @@ void iniciar_16855233(int meu_id, int total_jogadores) {
     num_jogadores = total_jogadores;
 }
 
-void nova_rodada_16855233(int rodada, Carta carta_virada, Valor manilha, int n_cartas, Carta* minha_mao) {
+void nova_rodada_16855233(const int rodada, const Carta carta_virada, const int n_cartas, Carta *minha_mao) {
     num_cartas = n_cartas;
-    manilha_atual = manilha;
+    manilha_atual = definir_manilha(carta_virada);
     vitorias_atuais = 0;
     
     for (int i = 0; i < n_cartas; i++) {
@@ -77,7 +77,7 @@ double probabilidade_vitoria(Carta carta, int cartas_ja_jogadas) {
     return prob_base * fator_jogadores * fator_cartas_jogadas;
 }
 
-int apostar_16855233() {
+int apostar_16855233(const int *apostas) {
     int aposta = 0;
     
     // Analisa cada carta e sua probabilidade de vitória
@@ -170,7 +170,7 @@ int encontrar_melhor_carta(Carta* mesa, int num_na_mesa) {
     return melhor_idx;
 }
 
-int jogar_16855233(Carta* mesa, int num_na_mesa) {
+int jogar_16855233(const Carta *mesa, const int num_na_mesa, const int vitorias) {
     int idx = encontrar_melhor_carta(mesa, num_na_mesa);
     
     // Se não encontrou carta (erro), joga primeira disponível
